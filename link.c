@@ -99,8 +99,8 @@ create_new_link()
 link_t*
 get_midlink(link_head_t* link_head)
 {
-    link_t* dlink;
-    link_t* slink;
+    link_t* dlink = link_head->head;
+    link_t* slink = link_head->head;
 
     while(dlink && dlink->next && dlink->next->next) {
         slink = slink->next;
@@ -109,4 +109,35 @@ get_midlink(link_head_t* link_head)
 
     return slink;
 }
+
+link_head_t*
+reverse_links(link_head_t* link_head)
+{
+
+    link_t* l_cur = link_head->head;
+    link_t* l_prev = NULL;
+    link_t* l_next = NULL;
+
+    while (l_cur != NULL) {
+        l_next = l_cur->next;
+        l_cur->next = l_prev;
+        l_prev = l_cur;
+        l_cur = l_next;
+    }
+
+    link_head->tail = link_head->head;
+    link_head->head = l_prev;
+
+    return link_head;
+}
+
+link_t*
+get_n_from_end(link_head_t* link_head)
+{
+    link_t* link1 = link_head->head;
+    link_t* link2 = link_head->head;
+}
+
+
+
 
