@@ -1,0 +1,27 @@
+https://www.geeksforgeeks.org/minimum-number-of-swaps-required-for-arranging-pairs-adjacent-to-each-other/
+
+
+https://www.geeksforgeeks.org/dynamic-programming-set-15-longest-bitonic-subsequence/
+
+https://www.geeksforgeeks.org/find-a-sorted-subsequence-of-size-3-in-linear-time/
+
+
+https://www.geeksforgeeks.org/sort-an-array-according-to-absolute-difference-with-given-value/
+
+
+https://www.geeksforgeeks.org/find-minimum-moves-reach-target-infinite-line/
+
+https://www.geeksforgeeks.org/count-strictly-increasing-subarrays/
+
+Maximum XOR-value of at-most k-elements from 1 to n
+    ---> Find the solution for exact k elements. Where K is > log2(n)
+
+
+https://www.geeksforgeeks.org/connect-n-ropes-minimum-cost/
+
+https://www.geeksforgeeks.org/find-three-closest-elements-from-given-three-sorted-arrays/
+
+
+https://www.geeksforgeeks.org/find-three-closest-elements-from-given-three-sorted-arrays/
+
+https://www.geeksforgeeks.org/find-smallest-value-represented-sum-subset-given-array/

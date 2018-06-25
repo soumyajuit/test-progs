@@ -1,0 +1,28 @@
+1. Function ptr.
+2. The interface made using func ptr.
+3. Delete element from Link-list which is used in multiple threads.
+4. Locks.
+5. concurrency.
+7. threads.
+8. Paxos -->https://lamport.azurewebsites.net/pubs/paxos-simple.pdf
+9. Raft -->
+10. bit-fields. 
+
+11. PCIe Arch.
+12. SPDK/DPDK.
+13. ASM code. stack organization
+14. Register details.
+15. pthread create destroy unshare __clone system call.
+16. wait() syscall.
+17. pid() ppid()
+18. reader/writer problem.
+19. pthread_join();
+20. Linux virtual address space.
+21. Linux physical address space.
+22. RDMA/DMA.
+
+
+---------->
+
+1. Matrix Problems.
+2. Floodfill Problems.

@@ -1,0 +1,669 @@
+Page created.
+
+
+porte hobe
+
+i) red-black tree.
+ii) trie
+iii) phone number save
+     ------> 
+            i)  make a trie. ( finding number from name)
+            ii) now in each trie we have a 26 character in each node. In each node don't have the 26 ptr for mem efficiency.
+                but have a balanced tree.
+            iii) suffix tree could be useful but need to see how.
+iv) graph algo (DFS/BFS)
+v) basic graph theory.
+vi) grap-alogs (djkstra)
+viii) bellman-ford
+vii)longest palindromic substring of given string (codE)
+viii) AVL TREE (code)
+ix) backtracking
+x) deletion of a node from binary tree x
+xi) The XLS problem
+xii) merge sort.
+xiii) heap sort
+xiv) quick sort
+xvii) bucket sort
+xviii) radix sort
+xv) in a string looks like "abbcbbbbaaacccbbcbbccccc" ==> sort it like this way "aaaaabbbbbcccccc"
+xvi) segment tree.
+xvii) Given daily stock rates of last year give the average stock rate price for a given day range
+xviii) given a long stream on numbers find the median of those numbers.
+xix) inplace matrix transposition.
+    --> need to see the cycle finding technique for breaking condition.
+
+xxxocc) topological sorting.
+xxxix) trie
+xxxxixx) B-tree
+xx) find longest common substring btw 2 strings.
+
+xxi)Inversion count in an array ---> find the inversion where a[i] > a[j]  where i < j
+                        ---> sort using merge sort and count the number of inversion !!!!
+
+xxx)1.Given a large string a and a smaller string b . Find the minimum size window in the string a which contains all the characters of the string b.
+                    ----> i) scan the second array, and calculate the number of unique characters in it.
+                          ii) start from the start of the first string. go till found all the unique characters. Once found, try to squeeze the window.
+                                if possible to squeeze, keep on squeezing the window until a unique character misses.
+                                record the min window, and check
+                                if not possible or done
+                                check min window length
+                                advance the window.
+                                again once found the window, keep repeating the steps. 
+
+xx) Find the next greater permutation of a given number.
+    -----> Do the following .
+    
+            i) Find the greatest index i such that a[i] < a[i+1]
+            ii) Find the greatest index k starting from i such that a[i] < a[k].
+            iii) swap a[i] and a[k]
+            iv) reverse all the number starting from  ( not including a[i]) a[i+1] till the end.
+            
+                why? ---> might be wrong.
+                    Because, all the element after a[k] is not greater than a[i].
+                    and all the element after a[i+1] ( means where a[k] included) is the decresing manner.
+                    Hence once swaped a[i] and a[k], number is larger than the starting number. Now if we
+                    reverse all the elements starting from a[k] till end, the resulting subnumber ( from a[k+1]<->a[n]) would be 
+                    lesser than the original. Hence the resulting number should be least one.
+                    
+                    After swaping the number increases. 
+                    
+                
+            
+        ** Start thinking from the highest order of the number, as number is given in a array, we will start parsing it from the start.
+        
+xxi) print all permutations of a given string.
+        DP?
+
+xxii) Given a number, find the next smallest palindrome.
+xxiv) Solve Snakes and ladder problem,
+xxxiv) skip lists
+
+xxxxxiv) Need to read -->
+        http://www.geeksforgeeks.org/longest-even-length-substring-sum-first-second-half/
+        
+        Longest even length string have both halves sums are same.
+
+
+a1a2a3..anb1b2b3...bnc1c2c3..cn will be a1b1c1a2b2c2...anbncn.
+
+http://en.wikipedia.org/wiki/In-place_matrix_transposition
+http://www.geeksforgeeks.org/inplace-m-x-n-size-matrix-transpose/
+
+xx)Design a contact list for a cell phone which can add & search really quick and is scalable.
+
+i) maximum contiguous sum in an array.
+
+    max_so_far = max_ending_here =0;
+    for( i = 0; i < n; i++)
+    {
+        if (MAX(0,max_ending_here + a[i]) == 0) {
+            max_ending_here = 0;
+        } else {
+            max_ending_here += a[i];
+        }
+        
+        max_so_far = MAX(max_so_far, max_ending_here);
+    }
+
+    >>>> Modified version.
+
+    The thing is following. What is the maximum sum ending at position i. The arr[i] will either be in the solution till
+    found [k - i -1] or arr[i] will start a new solution. Hence
+
+    Max_i = MAX(Ai-1 + i, arr[i]);
+    Here Ai-1 is the Maximum sum found till Ai-1 including i-1. 
+
+
+    def max_subarray(A):
+        2     max_ending_here = max_so_far = A[0]
+        3     for x in A[1:]:
+        4         max_ending_here = max(x, max_ending_here + x)
+        5         max_so_far = max(max_so_far, max_ending_here)
+        6     return max_so_far
+
+    
+    a1,a2,a3,a4,a5,a6,a7,a8......
+    
+    explanation:
+                Run through all the element in the array. Maintain a continuous sum. Break the sum only if 
+                current continous sum + current element gives 0. Otherwise even if the current element is a
+                negative one adding the positive remains from continous sum helps.
+
+    Kadanes algorithm.
+    
+
+ii) in a matrix all the rows are sorted and coloumn are sorted. Given a number find it in the matrix.
+
+    go through the diagonal of the array. check with the element given. If the diagonal element is smaller go to the
+    next element in the diagonal. If found bigger. you need binary search on the row and coloumn of the bigger element.
+    
+iii) tower of hanoi ...
+    
+        Optimal  number of moves  = 2^n - 1.
+        recursive solution  ===> T(n) = 2T(n-1) + 1
+        
+iv) find the kth smallest/largest element from an array.
+
+    The idea is to find a pivot element. Now partition the array in L1 and L2. where L1 < pivot and L2 > pivot. 
+    Doing that partition is like following.
+    
+    [ code
+    
+     function partition(list, left, right, pivotIndex)
+     pivotValue := list[pivotIndex]
+     swap list[pivotIndex] and list[right]  // Move pivot to end
+     storeIndex := left
+     for i from left to right-1
+         if list[i] < pivotValue
+             swap list[storeIndex] and list[i]
+             increment storeIndex
+     swap list[right] and list[storeIndex]  // Move pivot to its final place
+     return storeIndex
+
+     code]
+     
+     "At the end of this partition pivot will be swaped with storedindex. Now that means there are stored index number of
+     values which are less than pivot."
+     
+     Now see the following. 
+     
+     if k == pivotindex.
+        return arr[pivotindex] ( because there are pivotindex == storedindex number of values less than pivot hence pivot is kth]
+                                [ any return will be done from here hence above explanation always holds good]
+     else if k < pivotindex
+        return (do select algo (arr, left, k, pivotindex-1)
+     else 
+        return (do select algo (arr, pivotindex+1, right, k)  
+     
+     
+    a) http://en.wikipedia.org/wiki/Median_of_medians
+    b) http://en.wikipedia.org/wiki/Quickselect
+    
+    
+    [ code
+        
+      // Returns the n-th smallest element of list within left..right inclusive (i.e. left <= n <= right).
+  // The size of the list is not changing with each recursion. Thus, n does not need to be
+  // updated with each round.
+  function select(list, left, right, n)
+     if left = right        // If the list contains only one element
+         return list[left]  // Return that element
+     pivotIndex  := ...     // select a pivotIndex between left and right, e.g. left + Math.floor(Math.random() * (right - left + 1))
+     pivotIndex  := partition(list, left, right, pivotIndex)
+     // The pivot is in its final sorted position
+     if n = pivotIndex
+         return list[n]
+     else if n < pivotIndex
+         return select(list, left, pivotIndex - 1, n)
+     else
+         return select(list, pivotIndex + 1, right, n)
+         
+    code]
+    
+    iii) the dutch flag problem:
+    
+    
+    iv) coin exchange problem. (DP)
+    v) edit distence (DP)
+    v) matrix rotation 
+    vi)frog jumping problem. ( DP)
+        Idea:
+             in a position i which have HOP as k and MINHOP as MINHOP(i) in the array calculate following.
+                
+                MINHOP(i+k) = MIN( MINHOP(i+k), (MINHOP(i)+1));
+    
+    vii)Given a matrix of ‘O’ and ‘X’, replace ‘O’ with ‘X’ if surrounded by ‘X’
+        
+        --- do floodfill().
+    
+    
+    ix) exel problem (convert digit to AA,AB.. like series) [ base 26]
+    
+    x) Count the number of binary strings of length N. Having no 2 consecutive 1s.
+    
+        This DP:
+        This problem can be solved using Dynamic Programming. Let a[i] be the number of binary strings of length i 
+        which do not contain any two consecutive 1’s and which end in 0. Similarly, let b[i] be the number of such 
+        strings which end in 1. We can append either 0 or 1 to a string ending in 0, but we can only append 0 to a 
+        string ending in 1. This yields the recurrence relation:
+
+        a[i] = a[i - 1] + b[i - 1]
+        b[i] = a[i - 1] 
+         
+         The b part is always 1 less then the a part hence we can following.
+         
+         a[n] = a[n-1] + b[n-1] now b[n-1] = a[n-2] hence
+         a[n] = a[n-1] + a[n-2] staring with 1 ----> this is Fibonacci seris  
+        
+        The base cases of 
+        
+        
+    xi) COncept ....
+    
+        iii) Given an array and a value X find the min window size in whose sum is closest to X.
+        i) In a array, if we encounter some element twice then the complexity would be 2N, not N^2. 
+            N^2 comes when, for each element remaining or (each element) encountered.
+            
+            like in the followining alogo.
+            
+            
+            int find_min_max_sum_arr(int *arr, int n, in x)
+            {
+                int start =0 ;
+                int count_sum = 0;
+                int i=0;
+                int min_till = 0;
+                
+                for (i =0; i < n; i++) {
+                    
+                    while ((cur_sum > x) && (start < i-1)) {
+                        min_till = MIN(min_till, (i-start));
+                        cur_sum -= arr[start];
+                        start++;
+                    }
+                    
+                    cur_sum += arr[i];
+                }
+                
+                return min_till;
+            }
+            
+    xii)Given a linked list a random ptr also exists. Clone the original linked list.
+        
+        
+        
+        xiii) DP
+                http://www.algorithmist.com/index.php/Coin_Change
+                http://community.topcoder.com/tc?module=Static&d1=tutorials&d2=dynProg
+                
+        xiv) Heap sort
+              ;; insert
+                 delete
+                 
+        xv) http://cslibrary.stanford.edu/110/BinaryTrees.html#s2 <--- binary tree
+        xvi) AVL tree
+        xvi) http://math.hws.edu/eck/cs327_s04/chapter9.pdf <-- graph algo
+        xvii) connected component of a graph
+        xviii) Median of a stream of numbers.
+        xix) http://www.cut-the-knot.org/blue/chinese.shtml  <-- chinese remainder theorem.
+        xx) https://www.facebook.com/coderchoice
+        
+        
+tryout:
+
+You are given a double linked list and an array of pointers to elements in this list (no assumptions can be made on the array - number of pointers, order and duplicates allowed). 
+Return the number of sequences of elements (groups of consecutive elements), pointed by the array. 
+
+For example, if this is the array (number relates to index in the list, not the actual pointer value): 9,1,3,7,8,5,2. 
+Then output is 3, representing these sequences: [1,2,3], [5], [7,8,9]
+
+
+1) Given a pre-order traversal of a binary tree represented by , I for internal node and L for leaf, build the tree
+2) partition an array in such a way, so that both partition having a same average.
+
+ii) read about how printf works. And what is system buffer how to use them.
+    http://www.csee.umbc.edu/~chang/cs313.s02/stack.shtml.
+    
+    http://www.linux-tutorial.info/modules.php?name=MContent&pageid=112
+    
+
+    
+xxxxx) find median of a long stream of numbers at any instant of time.
+        have a max heap from the last n/2 elements and have a min heap first n/2 elements.
+        This 2 heaps would be balanced. Means there couldn't be any scenario, where the diff of
+        the number of elements in them is more than 1.
+        Now for each element insertion as following. 
+        See which heap has more element, insert the element into the other heap. That keeps the heap
+        balanced, and as in mean and max heap, we would exactly find the median.
+        The new median would be from the top of the heap which has more element. If even number of elements are there
+        then get the average of the top of both of the heap elements.
+        
+        Or 
+        use a AVL high balance tree, and get the median.
+        
+        
+xxxx**) Given a charecter 'A' and CTRL+A CTRL+C and CTRL+V command and N keystrokes. Maximum how many A's could be printed.
+
+        ---->
+        
+xxccccfff) There is a array of (integers/strings). Now in this there are some elements more than k times.
+            List all those elements.
+            Read from AFI
+            Done using hashmap.
+            need reading.
+            
+xxxxiivv) How to sort a almost sorted array. ( given that the elements in the array are located at most k distence from their
+            sorted location).
+            Have min-heap of size k. Now for the first element would be present in the [0-k] distence. Find the min-ele from
+            heap, remove it put in 0th location. Add the element in the k+1th location. Now the element in the sorted order 
+            which needs to be in 1st position would be present in the location [1-k+1], hence find the min element from heap 
+            put it in the k+1th location.
+            Do the same for all the elements.
+        
+iiiii) lexographical sort       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+DYnamic Prog:
+    i) Find the biggest sub-matrix square.
+    ii) Find largest palindrom
+    iii) Find the longest common sub-sequesnce.
+    iv) partition an array with equal sum  
+        get the sum of the full array. if odd no chance. If even then do the following. Get the half of the sum. 
+        Then find the subset of the array which holds this sum. If true then we can partition, if not no.
+    v) Given A, CTRL+A, CTRL+C, CTRL+V, and N keystroks maximum number of A's. (needs looking)
+    vi) FInd the common super sequence of 2 strings. (needs looking)
+    vii) Find EDIT distence of 2 strings.
+    viii) longest common substring.
+    ix) word partition problem.
+    x) Write a program to find the sum of maximum sum subsequence of the given array such 
+       that the intgers in the subsequence are sorted in increasing order.
+    xi) print all the permutation of a given string.
+    xii) subset-sub. Given an array, and a sum find if there exists any subset of the array which holds this sum.
+    xiii) Longest common subsequence in O(n) space.
+           --> for each literal in the first sequence find the position of it in the second sequence.
+                Now doing that costs O(n^2) time. And it yields an array of the position of the literals
+                in the second array based on the first array. 
+                Now if we find the longest increasing subsequence in the position array that will be the longest common subsequence.
+                
+                [ 1 modification what if the array consists of dublicates?]
+                
+                Now finding longest increasing subsequence can be done in O(nlog(n)) time, and with O(2N) space.
+                Hence total space consumed is O(3N). and time is O(n^2) + O(nlog(n))
+    xiv)Consider a row of n coins of values v1 . . . vn, where n is even. We play a game against an opponent by alternating turns.
+        In each turn, a player selects either the first or last coin from the row, removes it from the row permanently, and receives 
+        the value of the coin.
+        
+    xvii) Coin change. 
+          Given a number N, and set of coins {s1,s2,s3,s4,s5....sm} how many ways we can make change of that number N.
+          i) It is like partitioning of the integer N. In how many ways we can partition the integer N.
+          ii) given number as 4 and the coins as {1,3}.....
+              Now there are 2 ways {1,1,1,1} and {3,1}. Now here {1,3} and {3,1} are same. Hence the position of the partition doesn't matter
+              It matters the number of such partitions.
+          
+    
+Other programs:
+    i)A large file is given you have to find all the anagrams. Told him to divide the file in chunks for 
+      parallel processing and then check anagrams using heap.
+      
+    ii) match pairs of nuts and bolts ( where nuts and bolts are unique).
+    
+        http://www.geeksforgeeks.org/nuts-bolts-problem-lock-key-problem/
+        
+        The point here is the following. 
+        Using quick-sort partition we just parition the bolt array with help of nut value as pivot. Same way we will partition
+        nut array with the pivot found in the bolt_array. Now in the quick_sort partition we just found the correct position of 
+        a pivot. And at the end of the partition we replace it. 
+        But the point is in this case we cant swap pivot at the end, as they are different array. 
+        Hence save the value of the bolt in the highest index when match found for the current nut.
+        
+        Hence using this and the breaking condition of the quick sort method we can match them,...
+        
+        Solution where a bot matchs with multiple nuts and vice versa is not done ..... ( need to do)
+        
+xxxxppp)2) print the path between any two given nodes in a binary tree
+            find the common ancestor of 2 given 2 nodes.
+            
+xxxohh) elated to slot machine and its working
+
+
+ggggfhhf) Find first non repeating character in a stream of characters
+tttttyyy) Given a sorted dictionary of alien language , find order of characters.
+
+hhhhhh) find minimum number of characters needed to be added to the end of a string to make it palindrome.
+
+ggggg) Given a brick of size 1 x 4, how many ways you can construct a wall of size N x 4 --->
+        fibbonacchi series  N/4 th term  <--- wrong
+        
+        
+        
+ggggg) Data Strucutures videos by Prof Naveen Garg from IIT Delhi
+
+ggghhhhkkkkk)Actual question starts here, given the binary tree, how will you serialize and deserialize it to the file?
+
+ttttt) If there is array of size N and have element from 1-N. now there are repetitive elements present in the array.
+        Find out what are the elements are 
+        
+gghhuu) merge 2 BST
+
+ggggg) Frog jumping problem write the code
+
+hhhhh) A matrix which is ROW wise and COLOUMN wise sorted. Given a element find the location of that element in the matrix.
+
+ddddd) Implement Dictionary ---> RB tree approach ??
+gggg) boundary fill
+hhhhh) flood fill
+ttttt) n-array tree. 
+
+yyyy) Catalan number --->
+        What is it. 
+            i) dyke word ... Given n number of X and n number of Y. Arrange them in a way such that in any prefix number of X is allways >= number of Y.
+                for n = 1 XY.
+                    n = 2 XYXY.
+                          XXYY
+                         
+        How to make this. 
+        It is called catalan number Cn.
+        Now if there are 2N elements (like matching pairs), how to make 2N of them.
+            i) We can add 2 nodes in the front of 2(N-1) nodes. Now the arrangements would be 1 (2 nodes can be arranged in 1 way) * Cn-1 (the way 2(N-1) nodes can be arranged).
+            ii) 4 nodes in the front and 2(N-2) nodes in back, total arrangement would be 
+                C2 (number of ways 4 matching nodes can be arranged) * Cn-2 (number of ways 2(N-2) nodes can be arranged).
+            ,........................
+                2(N-1) nodes in the front and 2 nodes in the back, total number of arrangement would be Cn-1 * C1.
+
+            It is like how many ways we can partition m into 2 parts ( which are independent in arrangement).
+                1 + m-1
+                2 + m-2
+                3 + m-3
+                ......
+                m-1 + 1
+                
+zzzzz)  Given an array print elements according to frequency and if two elements have same frequency then print it in decreasing order.
+            i) problem 
+                1. need to arrange elements in sorted order of frequency.
+                2. Need to find an element to increase frequency.
+                3. When frequency matchs then printing them sorted order.
+
+ttttt) stock market. Given share for some days, start at the first day. Give the maximum profit you can earn.
+        i) The point is, buy at the first day. 
+            Then go on till u get the maximum diff in the share value. Once found can sell it.
+            Once sold try to buy in the next smallest share day and again repeat the same algo.
+            
+xxxxxx) Stock market problem:
+        i) Given 
+            
+            
+Tree problems:
+
+i)  A given array represents a tree in such a way that the array value gives the parent node of that particular index. The value of the root node index would always be -1. 
+    Find the height of the tree. Height of a Binary Tree is number of nodes on the path from root to the deepest leaf node, the number includes both root and leaf.
+    
+    Input: parent[] = {1 5 5 2 2 -1 3}
+    Output: 4
+    sol -- O(n)
+    
+    Gotchas:
+            i) The height of a tree could calculated by given root the maximum height and leaf as 0. Other case root as 0 and the leaf which is farthest from the root
+               would be the maximum height.
+
+
+String algorithms:
+        1.) Suggest auto correct if a word is misspelt.
+            i)only one character is replaced by wrong character like cht then suggestion can be cat.
+            ii)the word written is prefix of other word.
+            
+            
+ii) Implement minimum average completion time scheduler.
+    i) proc         arrival time        length
+        p1              0                   3
+        p2              1                   9
+        p3              2                   6
+        
+    for the above example if we do FIFO then the average time taken is ((0+3)+ ((3-1) + 9) + (12-2) + 6)/3 == 10
+    instead of that if we schedule p1-p3-p2 then the average would be ((0+3) + ((3-2) + 6) + (9-1) + 9) == 9
+    This called earliest deadline scheduling. 
+    Implement the same. ( use mean heap) (explain why??)
+    
+ *
+
+ iiiiii) Find the repeating and the missing elements in array of N elements from 1-N. (without any extra space, with
+     O(N) times, and not using any mathemetical equeation as overflow will occure)
+
+        ---> First do the XOR of all the elements in the array.
+        ---> Now with that XOR result do the XOR of all the elements from 1-N.
+        ---> Doing that what will happen. As all the elements present except one twice the first XOR will not contain
+             the repeating element. But it will contains XOR of all the other elements except the repeating one and the
+             missing one.
+        ---> The second XOR will eleminate all the elements, and the XOR result will boil down to the XOR of the
+        repeating and missing element.
+
+        ---> Now do the following.
+                --> In the XOR result of the 2 elements If there is a bit-set then that bit will either be set on one of
+                the elements. As XOR of 1-1 will be 0.
+                --> Now choose a bit. We will choose the rightmost set bit (the lowest order set bit).
+                --> Now do the XOR of all the elements in the array who has the rightmost bit set as in the earlier XOR.
+                    Note if the repeating element has that bit set, it will be absent in this XOR result.
+
+
+                --> Now do the XOR of all the elements which does not have the bit-set.
+                    Now if the repeating elements does not have the bit set will not be present in this XOR ( as it
+                            will be eleminated as it appeared twice
+
+                --> Now take these 2 XOR and then XOR with all the elements from 1-N.
+
+                    Following can will happen.
+
+                    1) If the repeating number is the one which does have the bit set. It will appear after the second
+                    XOR, as all other elements will be eleminated.
+                       
+                    2) If the repeating number is the one which does not have the bit set. It will not appear in the other
+                    XOR which was done with elements not bit-set. Hence after second XOR all other elements will be
+                    eleminated, and the repeating element will be there.
+
+                    ---> The same is applicable for the missing element as well.
+
+ iiiii) Print Left View of a Binary Tree
+        ---> Without any extra space.
+
+            --> Hint: At a given level there will be a single node to be printed.
+
+        ---> Simple Algo.
+             --> Get the depth of the tree first.
+             --> Create an array of size depth (space required).
+             --> Now do a pre-order traversal with left visiting first tracking depth. If the array at depth D does have an
+                 element don't do anything else put the node value at depth_arr[depth].
+
+-------------------------------------------------------------------------------------------------------------------------
+NEW PROBLEMS:
+-------------------------------------------------------------------------------------------------------------------------
+
+0. Read KMP Algorithm.
+
+1. Given an array of strings find the pairs of strings which makes a palindrome.
+    >> Find the Ans.
+        >> 1. Revere each string and make an big-string by concatenating all of
+        them in a single string.
+            1. Even length palindromes [ for each string try to find that match
+            exists or not. KMP find the first occurence (??).]
+
+            2. Odd length palindromes [ Find the occurence of the pat string in
+            the bigger string, matched only till the last character.  ??]
+
+        >> 2. Reverse each string and make trie out of it.
+            [ How to find the solution ]
+
+2. Some people are standing in a queue. A selection process follows a rule where people standing on even positions are
+    selected. Of the selected people a queue is formed and again out of these only people on even position are selected.
+    This continues until we are left with one person. Find out the position of that person in the original queue.
+    Print the position(original queue) of that person who is left.
+
+
+3. We are given a string. We are also given indexes of first and last characters in string. The task is to reverse the
+    string without using any extra variable.
+
+4. https://www.geeksforgeeks.org/maximum-product-subarray/ [ with -ve elements]
+    Maximum product subarray.
+        The key point is, at a given index i if there are even number of -ve including left and right of it.
+        then we should simply multiple all the elements as that would be the maximum sum.
+
+        Now, we run through the array once to find out MAX_i till which we have even number of -ve elements.
+        Till MAX_i we can simply multiply all the elements.
+
+        After the MAX_i we need to follow Kadens algorithm to find the Maximum prod.
+
+        Gotcha: There could be 0 in the array. When we find 0 we can divide the problem there. Means maximum prod
+        subarray cannot contain 0.
+
+5. https://www.geeksforgeeks.org/k-th-largest-sum-contiguous-subarray/
+    
+Bit Things:
+=========================================================================
+
+1. How to get the rightmost set bit in a integer.
+    
+    Right_most_bit_set = (A) & ~(A-1)   << A - 1 will make the right most bit to 1 if 0
+                                           was there else to 0 if 1 was there.
+                                           Now ~(A-1) will flip all other bits. Now if we do & with A
+                                           then the bit which got reset because of doing -1 will be the only
+                                           bit be set.
+
+                                           example.
+                                           1100
+                                           this is 8 + 4 = 12 doing -1 will be 8 + 3 = 1011
+                                           The concept is the smallest power of 2 present in the number will be
+                                           effected. Means doing -1 it will result in 2^n -1 means the odd no before it.
+                                           And if the last bit was set means A was odd starting with then the last bit
+                                           will become 0.
+
+
+
+2. given a tree having unique nodes and given n and k value, find n node and then print all nodes having distance of k
+from nth node in both the direction
+
+3. An array is given and it can be of four types :
+(a). increasing
+(b). decreasing
+(c). first increasing then decreasing
+(d). first decreasing then increasing
+Without traversing the array we need to tell its type.
+
+    >>> Try to do without binary search.
+
+4.  A binary tree and a number, say k are given. Print every path in the tree with sum of the nodes in the path as k.(A
+        path can start from any node and end at any node, i.e. they need not be root node and leaf node; and negative
+        numbers can also be there in the tree)
+
+5. Given a binary tree, if all of its leaf nodes are set to fire at the same time and each node takes 1 second to burn
+completely, what will be the minimum amount of time to burn the given binary tree
+
+
+6. You are given n linked lists which are merging with each other at some points. You have find the sets of all the
+linked lists which are merging together.
+
+7. Given an integer, find the nearest palindrome to that number.
