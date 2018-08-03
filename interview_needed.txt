@@ -617,12 +617,14 @@ NEW PROBLEMS:
 
         After the MAX_i we need to follow Kadens algorithm to find the Maximum prod.
 
+        Changed version:
+            
+
         Gotcha: There could be 0 in the array. When we find 0 we can divide the problem there. Means maximum prod
         subarray cannot contain 0.
 
 5. https://www.geeksforgeeks.org/k-th-largest-sum-contiguous-subarray/
-    
-Bit Things:
+
 =========================================================================
 
 1. How to get the rightmost set bit in a integer.
@@ -662,8 +664,32 @@ Without traversing the array we need to tell its type.
 5. Given a binary tree, if all of its leaf nodes are set to fire at the same time and each node takes 1 second to burn
 completely, what will be the minimum amount of time to burn the given binary tree
 
-
 6. You are given n linked lists which are merging with each other at some points. You have find the sets of all the
 linked lists which are merging together.
 
 7. Given an integer, find the nearest palindrome to that number.
+
+8. Given a string with 0 and 1. Find out max subarray with equal no of 0 and 1.
+
+    ---> Get the count. inc the count for 1, dec the count for 0.
+         have another array ( Prefix) which stores the pefix count till index i including i.
+         Now if there are equal no of 0 and 1 between i,j  then prefix[i] and prefix[j] will hold the
+         same number as sum.
+
+         Now if there are same number of 1 & 0 between idx i and j and idx j and k then the prefix[i] == prefix[j] ==
+         prefix[k] will be true.
+
+         ---> Now have this change. Instead of having a prefix array, get an array of size 2 * N [ N being the size of
+         the original given array].
+
+         Here the intention is to hash the found the sum,
+         If the count sum is first inserted into hash set the index where the count found. If the count is found already
+         get the diff between the first found idx and curr_idx, and compare the diff with the max_found. 
+
+         The rationale of taking 2 * N is the sum could either be N [ all 1] or -N [ all 0].
+
+
+
+
+
+

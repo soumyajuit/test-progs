@@ -20,6 +20,8 @@
 20. Linux virtual address space.
 21. Linux physical address space.
 22. RDMA/DMA.
+23. https://leetcode.com/discuss/interview-question/128438/Describe-memory-barriers-why-are-they-needed/
+    ---> memory barrier/ HW code re-order.
 
 
 ---------->
