@@ -572,6 +572,10 @@ ii) Implement minimum average completion time scheduler.
         ---> Without any extra space.
 
             --> Hint: At a given level there will be a single node to be printed.
+            --> Kind of BFS.
+                Create a ptr which will contain the max-depth seen. starting with it will be -1
+                each time if the cur_depth is > max_depth seen print the node.
+                -> As it is left view inorder needed.
 
         ---> Simple Algo.
              --> Get the depth of the tree first.
@@ -688,6 +692,17 @@ linked lists which are merging together.
 
          The rationale of taking 2 * N is the sum could either be N [ all 1] or -N [ all 0].
 
+
+9. Given two arrays a[] and b[] of equal length n. The task is to pair each element of array a to an element in array b,
+    such that sum S of absolute differences of all the pairs is minimum.
+
+
+    >> think ... -> Let call array A and array B. The minimum of the Array A will have minimum distance from B.
+                    And if we consider that diff, that will yield the minimum sum of the diff.
+
+10. Noble integers in an array (count of greater elements is equal to value)
+        ---> Think --> if the element is > N-1 then that is not possible. Because even if rest of the elements is > X
+        then also total number of elements.
 
 
 
