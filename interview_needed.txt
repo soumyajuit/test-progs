@@ -1,5 +1,8 @@
 Page created.
 
+1. Links needed:
+    1.1 http://www.algorithmist.com/index.php/Categories 
+
 
 porte hobe
 
@@ -178,6 +181,7 @@ iv) find the kth smallest/largest element from an array.
      
     a) http://en.wikipedia.org/wiki/Median_of_medians
     b) http://en.wikipedia.org/wiki/Quickselect
+
     
     
     [ code
@@ -704,7 +708,13 @@ linked lists which are merging together.
         ---> Think --> if the element is > N-1 then that is not possible. Because even if rest of the elements is > X
         then also total number of elements.
 
+11. Find the k-th missing element in a increasing sequence.
 
+#Matrix:
 
+1. Given a matrix with ‘X’ and ‘O’, change each ‘O’ to ‘#’ which are surrounded by ‘X’.
 
+#Trees
 
+12. Implement level order traversal and extend it to wave traversal of Binary Tree.(Lowest and leftmost element, then
+        highest and just right to leftmost, then lowest and just right to previous element and so on..)
