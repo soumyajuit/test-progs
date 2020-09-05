@@ -1,0 +1,29 @@
+Names:
+1. A Complex Object is one where the space for it member variables could essentially be allocated from HEAP, and the pointer to the heap allocated memory is kept as a member variable.
+
+2. In C++ the function signature is the NAMESPACE_NAME::FUNCTION_NAME::LIST_OF_ARGS . Not the return value. This is because the mainline lower level complier and the call strategy is shared with C. Hence as per the C standard a function can be called like (void) functiona(list_of_args). In this case the return value is ignored. Not if there are more than instances of the same function (READ Overloaded) exists in a translation unit, which are only differentiated via it's return value then in the following scenario which function should be called ?
+
+int
+func(int a, int b) { // do some ; }
+float
+func(int a, int b) { // do something else; }
+
+//Call
+(void) func(1, 2);  << Which function should be called ??????
+
+Hence the return value is not part of Signature, hence in the Mangled Naming convertion as well it does not take par.
+
+
+1. Why OOP is needed ???????????????????????
+
+>> In the actual breakdown of a OOP progs in C++ (insert godbolt link) we saw that a Class is noting but a set of Name Mangled functions. And for the members it is in a Object in a Given class is nothing but a C kind of structure, where the member variables (If not Complex) are kept in consecutive memory location. And for the member function calling places are replaced with the name of a Mangled function.
+
+Now how come a member function with same Signature. Get's its difference. 
+The answer to that is Name Mangeling.
+The Name Mangling in C++ generates name for each function in the trnaslation unit (Maybe the first pass compiler), where the name of the each function is translated to a new name based on the NAMESPACE it declared/defined, It's name and also the LIST_OF_ARGS (in order).
+
+Now as each class is it's namespace, for the function with same name and same LIST_OF_ARGS (in order) will have different Name Mangled name when they are defined in 2 different CLASS. Hence for compiler when it is doing the later passes to make the translation for the Member function calls it would be easier for them to understand which function to be called for a Given Object of a Given Class.
+
+
+
+1. Again WHY OOP Is NEEDED ????????
