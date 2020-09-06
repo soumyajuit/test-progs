@@ -27,3 +27,24 @@ Now as each class is it's namespace, for the function with same name and same LI
 
 
 1. Again WHY OOP Is NEEDED ????????
+
+
+
+
+Notes From Benji -----> :D
+
+1. Strict type checking.
+2. Program Organisation.
+3. Mintainance.
+4. Building concept 
+5. Each application essentially has their own language.
+   5.a In a new organization, there would be multiple short-names/acronims for different procedure and system follwed specific to that organization. This essentially builds up a 
+       kind of language, where the usual English is used along with the Organization specific concepts and acromims. The conversation in one organization could be totally alien
+       to another, because the Special concepts and acronims used in the languages are totally different in nature.
+       Now applying the same technique, it is possible to define Class-es (read Structures) and the methods are those which actually define the Concept and actual behaviour of
+       it. Applying the new invented Concepts it is possible to come up with a totally new language which could only be understandable in the Application context. And the total
+       new language will be supported in the Matrix of the plain OLD C language.
+       THAT IS ESSENTIALLY C++
+       
+       While creating a new Concept it is always necessary and responsible to come up with a set of rules which could be applied to the newly invented techniques.
+       That is done by STRICT TYPE CHECKING. Which is in-deed one of the use case of Inheritence.
