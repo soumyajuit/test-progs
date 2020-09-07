@@ -75,3 +75,10 @@ Notes From Benji -----> :D
       2. Creating Constrain which is sometimes implicit by the nature of the concepts ( like for a Shape the diameter parameter cannot be negative, and a get_diameter() API
          can do that check.)
       3. Creating relationship between the Concepts.
+      
+      
+IMP NOTES:
+   1. dynamic_cast<TypeName> ptr/Obj  ---> is more stricter than typecasting. In case of typecase we tell Compiler that the memory address reffering by an identifier should be
+      considered as type T. But incase of the "dynamic_cast" there is a typechecking which first confirms that the memory segment can be indeed considered as Type T or not.
+      Depending upon the check result either we get an Valid pointer to the memory or else we get NULL. That is more helpful in the runtime typechecking process.
+      [ Need to know how that is done, where in the case that any Object in C++ is nothing but Struct in C ]
