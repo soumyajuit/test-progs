@@ -48,3 +48,30 @@ Notes From Benji -----> :D
        
        While creating a new Concept it is always necessary and responsible to come up with a set of rules which could be applied to the newly invented techniques.
        That is done by STRICT TYPE CHECKING. Which is in-deed one of the use case of Inheritence.
+       
+ 6. Design upfront.
+    6.a In case of C style coding, the design starts out with a bunch of structure, and creating CONTAINS relation among them a contains relation for C style structures are kind
+        of like which is the main structure and which should contain which one.
+        And then comes the API definition and then traslation unit like (which are the .so and which should be depends upon which one). And the main conceptual design actually
+        takes place once the code production starts.
+        
+        In case of C++, the idea was different, in the real world scenarion the design of the things starts first, because the things which is needed to build the concepts of it
+        are already known to us, the constrain of each concept also known to us, that creates easy design before starting to solve the actual problem.
+        
+        In case of C++ also the same thing, we can layout the concepts first like in case of Signal Traslation we can first define what is a Fourier Transformation and
+        Z-Transformation, and then once we define those concepts (read as CLASSes) and also define the contrains which should be present with those concepts then it would be
+        easier for us to create a DESIGN, before we start solving the actual problem.
+        
+ 7. Classification of Concepts:
+      In the real world concept there is a implicit classification exists, like in an Organization everyone is Employee. But there are Employee in sales who does different job
+      than Employee in Programming devision, and Employee in Management division and Employee in Procurement Division. Hence if we see there is a implicit classification which
+      exists just by the name of the JOB Role.
+      
+      Also w.r.t concept it is evident that there exists a hierarchy exists in those concepts. And Sales Employee is an Employee first, hence Employee is more abstract term from
+      Sales Employee. Hence Employee concept could be up in hierarchy.
+      
+      These things can be determined while making the concepts and creating the design of the Solution/Application. These can be useful 
+      1. Creating real world based design.
+      2. Creating Constrain which is sometimes implicit by the nature of the concepts ( like for a Shape the diameter parameter cannot be negative, and a get_diameter() API
+         can do that check.)
+      3. Creating relationship between the Concepts.
