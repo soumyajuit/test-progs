@@ -1,0 +1,46 @@
+
+
+The Use of Operator -> along with decltype.
+
+1. decltype is a function which tells the type of an expression. By nature of the definition an expression is a cycilc.
+   Anything in an language other than it's keywords could be states as an expression.
+   
+2. The -> Operator is mostly associated with Pointer to an object type. Where -> helps us to access any member function or variable ( Given public/protected). But following is another usage of -> operator.
+
+	auto is a very useful thing in C++. In a given piece of code we do not need to know all the types from the interface. It we
+	know, what could be done by that interface. Like
+	
+	for (const auto& elem : vec) {
+		// Do something.
+	}
+	
+	for (const auto& elem : my_map) {
+		// Do something like elem.first / elem.second // Because we know that the elem in map has key and value.
+	}
+	
+	Doing his helps us abstracting the return type of the interfaces. Mostly in these cases an Interface1 returns an Object of
+	type T1 and then we go on calling some interface Interface2 which understand T1 and knows how to work with it.
+	Hence in between code which does not need to know the exact type of T1 can work using auto and passing it across various interfaces and doing the work accordingly.
+	
+	Hence for variables it is convenience point to use auto.
+	
+	Now what about functions.
+	
+	As C++ uses C type (read Unix type) linkers and loaders, hence the semantic for an function is already defined.
+	
+	In a function we need to know the variables (it could be var-args as well). and mostly the return type.
+	
+	With auto kind of return type is not valid for function.
+	
+	
+	Hence to use the similar kind of convenience, for function to use auto following is done.
+	
+	
+	auto 
+	func1(args...) -> decltype(expression(which determines what type of object will be returned))
+	{
+	}
+	
+	The facinating part is as the decltype part which comes after "->", can use the arguments which are sent to func1. Because the function arguments are already parsed and known to the lexical parsers and symbol table when the expression for decltype is met.
+	
+	This is to done so that for an interface and the return type can also be abstracted.
