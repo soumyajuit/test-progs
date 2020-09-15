@@ -1,3 +1,13 @@
+1. Generic Programming:
+	1.1 Templates.
+	1.2 decltype
+	1.3 declval
+	
+	
+2. SMART pointers.
+	1.1 enable_shared_from_this
+
+
 
 
 The Use of Operator -> along with decltype.
@@ -44,3 +54,67 @@ The Use of Operator -> along with decltype.
 	The facinating part is as the decltype part which comes after "->", can use the arguments which are sent to func1. Because the function arguments are already parsed and known to the lexical parsers and symbol table when the expression for decltype is met.
 	
 	This is to done so that for an interface and the return type can also be abstracted.
+
+
+
+
+
+
+Enable_shared_from_this.
+
+
+shared_ptr gets created once. And then as the name suggests it gets shared. And sometimes the ownership of it gets "moved"
+But it is not possible to create shared_ptr from same object multiple times, unless you specifically allow the object to do so.
+
+Meaning.. The way shared_ptr gets created is following
+
+	std::shared_ptr<some_class> some_class_obj = make_shared<some_class>(); // this is calling some_class's ctor.
+	
+	/* Now we can have */ auto some_class_obj_2 = some_class_obj; // In this case there would be refcount of 2 in the same object.
+	
+	Hence the meaning of the shared_ptr is to create once and then it can be used by sharing it or moving it to a new owner.
+	
+	Now let's take an example where, we want to create an object and then want to create shared_ptr from it and may be send it
+	across multiple interfaces.
+
+Continuing with the above example, 
+
+class some_class {
+	public:
+		// somthigns...
+		std::shared_ptr<some_class> get_shared(void) { return std::make_shared<some_class>(this) };
+	private:
+		// Some otherthins.
+};
+
+In the above class we can get a shared_ptr to the objects via calling get_shared(). Doing that following problem arise.
+
+
+ {
+  //... some code.
+  std::shared_ptr<some_class> obj1 = std::make_shared<some_class>(); // First object. ownership with obj1.
+  
+  { // Another scope started.
+    auto obj2 = obj1->get_shared(); // Now as we are creating a new shared_ptr from this, it is a new shared_ptr
+									// And the refcount of it is 1.
+  }
+    // dtor will be called for some_class;
+ }
+ 
+ The problem is when you want to create an object and later point in time you want to create a seperate ( not by copying a already created one) shared_ptr from it. Each time you create shared_ptr directly from this. this ptr does not know about already created shared_ptr, hence each time it will create a new one with ref-count as 1.
+ 
+ That is bad because if any of the newly created shared_ptr goes out of scope it will call dtor. And delete the object.
+ 
+ 
+ Hence following method is employed.
+ 
+ 
+ class some_class : public enable_shared_from_this<some_class> {
+	public:
+		// some_code.
+		std::shared_ptr<some_class> get_shared(void) { return shared_from_this(); }
+ };
+ 
+ Here we are inheriting enable_shared_from_this class which actually tracks the ownership and if any shared_ptr created for a given object (because parent class object tracks that). And each time you call get_shared(), it will not return a new shared_ptr instead one shared_ptr with refcount incremented.
+ 
+ Now all that can also be done by keeping a shared_ptr as a private variable inside the class itself. [ Need to seach why not ??]
