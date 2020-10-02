@@ -1,0 +1,13 @@
+
+1. A volume is a namespaces.
+   >> All the snapshots and clones from the volume and it's snapshots should also be part of the namespace.
+   
+2. Each of the versions have their own root nodes.
+   >> Each of those nodes shares metadata. With the pervious snapshotted versions (or the parent clones).
+   
+3. There is a concept of hierarchical refcounting.
+   >> The refcount map is kept outside the data/metadata of the volume-namespace.
+   >> Doing that de-couples space-accounting and actual metadata which is needed for a volume.
+   >> The mainly needed metadata for a volume is identified as indirect blocks.
+   
+   
