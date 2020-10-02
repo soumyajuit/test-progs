@@ -34,7 +34,6 @@
    Here all the blocks which were not written is getting shared but the block 2 which is replaces by x2 and the indirect block at the same manner
    changed to x1
    
-   
 5. Virtual BLock Number:
    >> Each block which hosted under the volume namespace will contain a virtual block number ( the formatting of it is not decided yet).
    >> There may be a 1:1 association between a VBN and PBN ( Physical block number) and in some cases that might not be there because of
