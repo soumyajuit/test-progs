@@ -11,3 +11,43 @@
    >> The mainly needed metadata for a volume is identified as indirect blocks.
    
    
+4. Let's consider following
+
+   >> 
+   [1] (v1) --> Indirect block 1 at v1
+   [ 1, 2 , 3, 4](v1)  --> blocks 1-4 at v1
+   
+   Now there is a write to block 2 in v2  then following would happen
+   
+   
+   V1                      v2
+   [1]                     [x1]
+   [1, 2, 3, 4]            [1, x2, 3, 4]
+   
+   After write.
+   
+   V1                      v2
+   [1]                     [x1]
+   [1, 2, 3, 4]            [1, x2, 3, 4]
+
+
+   Here all the blocks which were not written is getting shared but the block 2 which is replaces by x2 and the indirect block at the same manner
+   changed to x1
+   
+   
+5. Virtual BLock Number:
+   >> Each block which hosted under the volume namespace will contain a virtual block number ( the formatting of it is not decided yet).
+   >> There may be a 1:1 association between a VBN and PBN ( Physical block number) and in some cases that might not be there because of
+      Dedup.
+      
+6. The refcount map is a map which contains...
+    >> A key is a VBN and value is refcount.
+    >> Implicite refcount of 1 is present in the refcount map. Hence
+        >> If map.find(VBN) returns empty that means either block is not present or the block has a refcount of 1.
+        
+7. The Representation is kept as B-plus tree.
+   >> The actual DATA contains in the leaf nodes. The rest are only indirect-nodes.
+   >> An indirect-node is also considered as the data ( meta-data) of the Volume namespace.
+   >> If and indirect block of level L has refcount C then all the nodes underneath it will have
+      refcount == C.
+8. Point 7 established the point of hierarchical refcounting.
